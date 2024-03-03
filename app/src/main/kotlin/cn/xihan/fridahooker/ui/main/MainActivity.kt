@@ -112,6 +112,7 @@ import com.google.accompanist.themeadapter.material3.Mdc3Theme
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
 import java.io.File
+import cn.xihan.fridahooker.util.Utils
 
 
 class MainActivity : AppCompatActivity() {
@@ -197,6 +198,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onStart(owner: LifecycleOwner) {
+                    Utils.execute("su") != 0?: alert("Please grant root privilege")
                     fridaController.checkAll()
                 }
 
