@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
                 viewModel.setUri(it)
-            } ?: alert(this@MainActivity.getString(R.string.file_error))
+            } ?: alert("1"+this@MainActivity.getString(R.string.file_error))
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -230,7 +230,7 @@ class MainActivity : AppCompatActivity() {
             if (state.uri != Uri.EMPTY) {
                 val fileName = state.uri.path(context).versionName
                 if ("error" == fileName) {
-                    alert(getString(R.string.file_error))
+                    alert("2"+getString(R.string.file_error))
                 } else {
                     writeConfig(state.configModel.copy(versionName = fileName))
                     contentResolver.openInputStream(state.uri).use { `is` ->
@@ -246,9 +246,9 @@ class MainActivity : AppCompatActivity() {
                                 fridaController.checkAll()
                                 updateFridaVersionList()
                             } else {
-                                alert(getString(R.string.file_error))
+                                alert(getString("3"+R.string.file_error))
                             }
-                        } ?: alert(getString(R.string.file_error))
+                        } ?: alert(getString("4"+R.string.file_error))
                     }
                 }
             }
