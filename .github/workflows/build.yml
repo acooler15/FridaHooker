@@ -69,6 +69,12 @@ jobs:
           echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.22.1" --sdk_root=${ANDROID_SDK_ROOT} &> /dev/null
           # echo "sdk.dir=${ANDROID_HOME}" > local.properties
 
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      #   with:
+      #     limit-access-to-actor: false
+      #     timeout-minutes: 10
+
       - name: Build with Gradle
         run: |
           [ $(du -s ~/.gradle/wrapper | awk '{ print $1 }') -gt 250000 ] && rm -rf ~/.gradle/wrapper/* || true
@@ -85,7 +91,9 @@ jobs:
       - name: Upload assets to a Release
         uses: meeDamian/github-release@v2.0.3
         with:
-          files: app/build/outputs/apk/release/*.apk
+          files: >
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/apk/debug/*.apk
           token: ${{ secrets.GITHUB_TOKEN }}
           allow_override: true
           gzip: false
