@@ -86,6 +86,6 @@ jobs:
         uses: meeDamian/github-release@v2.0.3
         with:
           files: app/build/outputs/apk/release/*.apk
-          token: ${{ secrets.RELEASE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           allow_override: true
           gzip: false
