@@ -66,8 +66,8 @@ jobs:
           
       - name: Setup cmake
         run: |
-          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "cmake;3.22.1" --sdk_root=${ANDROID_SDK_ROOT} &> /dev/null
-          echo "sdk.dir=${ANDROID_HOME}" > local.properties
+          echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "cmake;3.22.1" --sdk_root=${ANDROID_SDK_ROOT} &> /dev/null
+          # echo "sdk.dir=${ANDROID_HOME}" > local.properties
 
       - name: Build with Gradle
         run: |
